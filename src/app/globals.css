@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+/* 디자인 토큰 — docs/design-handoff/DESIGN_HANDOFF.md §1 */
+@theme {
+  --font-sans: var(--font-noto-sans-kr), system-ui, sans-serif;
+
+  --color-navy: #0b2545;
+  --color-primary: #1d4ed8;
+  --color-primary-hover: #1e40af;
+  --color-primary-tint: #eaf1ff;
+  --color-primary-deep: #1e3a8a;
+  --color-ground: #f5f7fa;
+  --color-line: #e2e8f0;
+  --color-line-strong: #cbd5e1;
+  --color-ink: #0f172a;
+  --color-body: #334155;
+  --color-muted: #475569;
+  --color-subtle: #f1f5f9;
+  --color-on-dark-muted: #cbd5e1;
+  --color-on-dark-accent: #93c5fd;
+
+  --radius-control: 10px;
+  --radius-card: 16px;
+
+  --shadow-hero: 0 20px 48px rgba(11, 37, 69, 0.1);
+  --shadow-plan: 0 16px 40px rgba(29, 78, 216, 0.12);
+  --shadow-doc: 0 8px 24px rgba(11, 37, 69, 0.06);
+}
+
+@layer base {
+  html {
+    word-break: keep-all;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+  /* fieldset은 기본값이 min-width: min-content라 안의 표가 화면 밖으로 밀려납니다 */
+  fieldset {
+    min-width: 0;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: 24px;
+  @media (width < 480px) {
+    padding-inline: 16px;
+  }
+}
+
+@utility link {
+  color: var(--color-primary);
+  font-weight: 700;
+  &:hover {
+    color: var(--color-primary-deep);
+  }
+}
