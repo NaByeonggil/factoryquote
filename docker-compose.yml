@@ -4,6 +4,7 @@ services:
     image: facapp:latest
     container_name: facapp
     restart: unless-stopped
+    env_file: .env.local # ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_SESSION_SECRET (관리자 로그인)
     # 외부에는 quote-app의 Caddy(LAN 8110, .129 nginx 요청만 허용)로만 연다.
     ports:
       - "127.0.0.1:3010:3000"
