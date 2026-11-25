@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart3, FlaskConical, Inbox, Search, Send } from "lucide-react";
+import { BarChart3, FlaskConical, Inbox, LogOut, Search, Send } from "lucide-react";
 import { SITE } from "@/config/site";
+import { logout } from "./auth-actions";
 
 const ITEMS = [
   { href: "/admin", label: "문의함", icon: Inbox },
@@ -12,7 +13,7 @@ const ITEMS = [
   { href: "/admin/reports", label: "리포트", icon: BarChart3 },
 ];
 
-export function AdminNav() {
+export function AdminNav({ user }: { user: string }) {
   const pathname = usePathname();
   return (
     <header className="border-b border-white/10 bg-navy text-white">
@@ -39,6 +40,16 @@ export function AdminNav() {
               </Link>
             );
           })}
+          <form action={logout}>
+            <button
+              type="submit"
+              title={`${user} 로그아웃`}
+              className="inline-flex min-h-11 cursor-pointer items-center gap-1.5 rounded-control px-3 text-sm whitespace-nowrap text-on-dark-muted hover:bg-white/10 hover:text-white"
+            >
+              <LogOut size={16} aria-hidden />
+              로그아웃
+            </button>
+          </form>
         </nav>
       </div>
     </header>
